@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Od Management System</title>
+<link rel = "stylesheet" type = "text/css" href = "./CSS/index_css.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div id = "main-container" class="animation fadeIn">
+		<h3>ABC COLLEGE OF ENGINEERING</h3>
+		<h4>OD MANAGEMENT SYSTEM</h4>
+		<div class = "container-login animation fadeIn" id = "container-login">
+			<div class = "container-select-type-of-login">
+				<div class = "half-container">
+					<button id = "faculty-login-button" class = "blue-button">FACULTY LOGIN</button>
+				</div>
+				<div class = "half-container">
+					<button id = "student-login-button" class = "blue-button">STUDENT LOGIN</button>
+				</div>
+			</div>
+			<div class="address">
+			<p>ADDRESS</p>
+			<p>ADDRESS</p>
+			</div>
+		</div>
+		<div class = "container-student-login display-none animation fadeInRight" id = "container-student-login">
+			<h4>STUDENT LOGIN</h4>
+			<form method = "post" action = "StudentLoginServlet?id=StudentLogin" class = "login-form">
+				<label for = "input-registration-number">Registration Number: </label><br>
+				<input type = "text" id="input-registration-number" class="login-form-input" name = "registration-number" placeholder = "Your registration number" required><br>
+				<label for = "input-student-password">Password: </label><br>
+				<input type = "password" id = "input-student-password" class="login-form-input" name = "student-password" placeholder = "Your password" required><br>
+				<input type = "submit" value = "LOGIN" class = "blue-button margin-right margin-top">
+				<input type = "button" value = "BACK" id = "student-back-btn" class = "blue-button margin-top">
+			</form>
+		</div>
+		<div class = "container-faculty-login display-none animation fadeInLeft" id = "container-faculty-login">
+			<h4>FACULTY LOGIN</h4>
+			<form method = "post" action = "StudentLoginServlet?id=FacultyLogin" class = "login-form">
+				<label for = "input-faculty-id">Faculty Id: </label><br>
+				<input type = "text" id="input-faculty-id" class="login-form-input" name = "faculty-id" placeholder = "Your faculty id" required><br>
+				<label for = "input-faculty-password">Password: </label><br>
+				<input type = "password" id = "input-faculty-password" class="login-form-input" name = "faculty-password" placeholder = "Your password" required><br>
+				<input type = "submit" value = "LOGIN" class = "blue-button margin-right margin-top">
+				<input type = "button" value = "BACK" id = "faculty-back-btn" class = "blue-button margin-top">
+			</form>
+		</div>
+	</div>
+</body>
+<script src="./JAVASCRIPT/index_js.js"></script>
+</html>

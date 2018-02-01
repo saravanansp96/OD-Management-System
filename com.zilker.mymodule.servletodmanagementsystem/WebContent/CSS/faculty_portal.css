@@ -1,0 +1,305 @@
+@charset "ISO-8859-1";
+body {
+	background: radial-gradient(#202A4D, #0E122D, #202A4D, #0C172E);
+	font-family: "Georgia";
+	margin: 0px;
+	color: #1A2544;
+}
+.pending-list-table {
+	width: 90%;
+	margin: 0 auto;
+}
+.pending-list-table-th {
+	padding: 1%;
+}
+.pending-list-table-th-approve {
+	background-color: #4CAF50;
+	color: white;
+	padding: 10%;
+	border: none;
+	min-width: 80px;
+}
+.pending-list-table-th-reject {
+	background-color: #f44336;
+	color: white;
+	padding: 10%;
+	border: none;
+	min-width: 80px;
+}
+.pending-list-table-th {
+	margin: 1%;
+} 
+.pending-list-table-th-reject:hover {
+	cursor: pointer;
+}
+.pending-list-table-th-approve:hover {
+	cursor:pointer;
+}
+#nav-bar {
+	list-style-type: none;
+	display: flex;
+	padding: 0px;
+	margin: 0px;
+}
+.nav-bar-element {
+	flex-grow: 1;
+	text-align: center;
+	background: #008CBA;
+	color: white;
+	border-bottom: 2px solid #008CBA;
+	display: inline;
+}
+.nav-bar-element div{
+	padding: 5%;
+}
+.nav-bar-element:hover {
+	border-bottom: 2px solid white;
+	cursor: pointer;
+}
+.menu-select {
+	border-bottom: 2px solid white;
+}
+.display-none {
+	display: none;	
+}
+.display-block {
+	display: block;
+}
+.container {
+	margin: 5%;
+	padding: 3%;
+	background-color: #fff;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+.modal {
+    position: fixed;
+    z-index: 1; 
+    padding-top: 2%;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 5%;
+    color: #000;
+    border: 1px solid #888;
+    width: 70%;
+}
+
+#close-modal {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#close-modal:hover,
+#close-modal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.student-details-table {
+	width: 80%;
+	text-align: left;
+	margin: 0 auto;
+}
+.student-details-tr th , .student-details-tr td {
+	padding: 2%;
+}
+.center-align {
+	text-align: center;
+}
+.animation {
+	-webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+@-webkit-keyframes fadeIn {
+	0% {
+        opacity: 0;
+    }
+	100% {
+        opacity: 1;
+	}
+}
+@keyframes fadeIn {
+	0% {
+        opacity: 0;
+    }
+	100% {
+        opacity: 1;
+	}
+}
+.fadeIn {
+         -webkit-animation-name: fadeIn;
+         animation-name: fadeIn;
+}
+.content-center {
+	text-align: center;
+}
+.dropdown {
+	display: inline-block;
+	position: relative;
+}
+.logoutbutton {
+	width:-webkit-fill-available;
+	display: none;
+	position: absolute;
+	background: white;
+	color: #008CBA;
+	padding: 2%;
+	border:none;
+	z-index: 1;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	margin-top: 1%;	
+}
+.dropdown:hover .logoutbutton {
+	display: block;
+}
+.blue-button-logout {
+	width: 100%;
+	text-align: center;
+	padding: 5%;
+	display: block;
+	background-color: #fff;
+	color: #008CBA;
+	border: none;
+}
+.blue-button-logout: hover {
+	cursor: pointer;
+}
+.mobile-username {
+	display: none;
+}
+.mob-display {
+	display: none;
+}
+.mobile-nav-icon {
+	display: none;
+}
+.hover-pointer:hover {
+	cursor:pointer;
+}
+@media screen and (max-width: 500px) {
+	.container {
+		margin: 5%;
+		padding: 3%;
+	}
+	.form-apply-od {
+		width: 90%;
+		margin-top: 15%;
+		margin-bottom: 15%;
+	}
+	.name-h3 {
+		margin-top: 12%;
+	}
+	p {
+		margin-bottom: 10%;
+	}
+	#input-event-name , #inpt-event-date { 
+		border: 1px solid;
+		margin: 10% 0%;
+	}
+	.student-details-table {
+		width: 100%;
+		margin-top: 10%;
+		margin-bottom: 10%;
+	}
+	td, th {
+		padding: 5% 0%;
+		margin: 0% 2% 0% 2%;
+	}
+	.blue-button {
+		background-color: #008CBA;
+		color: #ffffff;
+		border: none;
+		padding: 5%;
+		margin-top: 4%;	
+	}
+	.nav-bar-element {
+		padding: 5%;
+		border: 0px 0px 0px 0px;
+		border-bottom: 2px solid #008CBA;
+	}
+	.student-details-tr th, .student-details-tr td {
+		padding: 2% 0%;
+	}
+	.nav-bar-element {
+		padding: 5%;
+		border: 0px 0px 0px 0px;
+		border-bottom: 2px solid #008CBA;
+		text-align: left;
+	}
+	.responsive {
+		display: block !important;
+	}
+	.mobile-nav-icon {
+		display: block;
+	}
+	.nav-bar-list {
+		text-align: left;
+	}
+	
+	.nav-bar-list :not(:first-child) {
+		display: none;
+	}
+	.nav-bar-list.responsive li{
+		display: block;
+	}
+	.mobile-username {
+		display: inline;
+		float: right;
+	}
+	.dropdown {
+		display: none !important;
+	}
+	.mob-display {
+		display: block;
+	}
+	.blue-button-logout {
+		width: 100%;
+		text-align: left;
+		display: block;
+		background-color: #008CBA;
+		color: #fff;
+		border: none;
+		padding: 0%;
+		font-size: 17px;
+	}
+	@-webkit-keyframes fadeInDown {
+	0% {
+        opacity: 0;
+        -webkit-transform: translateY(-20%);
+    }
+	100% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+	}
+}
+@keyframes fadeInDown {
+	0% {
+        opacity: 0;
+        -webkit-transform: translateY(-20%);
+    	}
+	100% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+		}
+	}
+	.fadeInDown {
+         -webkit-animation-name: fadeInDown;
+         animation-name: fadeInDown;
+	}
+	
+}

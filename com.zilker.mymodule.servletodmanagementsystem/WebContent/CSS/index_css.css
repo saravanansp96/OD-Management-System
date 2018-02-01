@@ -1,0 +1,178 @@
+@charset "ISO-8859-1";
+body {
+	background: radial-gradient(#202A4D, #0E122D, #202A4D, #0C172E);
+	font-family: "Georgia";
+}
+#main-container {
+	margin: 5%;
+	background-color: white;
+	padding: 5%;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	color: #1A2544;
+}
+#main-container h3 , #main-container p , #main-container h4 {
+	text-align: center;
+}
+.container-select-type-of-login {
+	display: flex;
+	text-align: center;
+	padding: 5%;
+}
+.half-container {
+	width: 50%;
+	flex: 1;
+}
+.display-none {
+	display: none;
+}
+.display-block {
+	display: block;
+}
+.container-student-login , .container-faculty-login {
+	width: 50%;
+	margin: 0 auto;
+}
+.login-form {
+	margin-left: 15%;
+	margin-bottom: 1%;
+}
+.login-form-input {
+	padding: 2%;
+    margin: 3% 0% 3% 0%;
+    border: none;
+	color: #272E41;
+	background-color: #F6FFFF;
+}
+.blue-button {
+	background-color: #008CBA;
+	color: #ffffff;
+	border: none;
+	padding: 2%;
+}
+.blue-button:hover {
+	cursor: pointer;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+.margin-right {
+	margin-right: 5%;
+}
+.animation {
+	-webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+@-webkit-keyframes fadeInLeft {
+	0% {
+        opacity: 0;
+    	-webkit-transform: translateX(-20%);
+    }
+	100% {
+        opacity: 1;
+    	-webkit-transform: translateX(0%);
+	}
+}
+@keyframes fadeInLeft {
+	0% {
+        opacity: 0;
+    	-webkit-transform: translateX(-20%);
+    }
+	100% {
+        opacity: 1;
+    	-webkit-transform: translateX(0%);
+	}
+}
+.fadeInLeft {
+         -webkit-animation-name: fadeInLeft;
+         animation-name: fadeInLeft;
+}
+
+@-webkit-keyframes fadeInRight {
+	0% {
+        opacity: 0;
+    	-webkit-transform: translateX(20%);
+    }
+	100% {
+        opacity: 1;
+    	-webkit-transform: translateX(0%);
+	}
+}
+@keyframes fadeInRight {
+	0% {
+        opacity: 0;
+    	-webkit-transform: translateX(20%);
+    }
+	100% {
+        opacity: 1;
+    	-webkit-transform: translateX(0%);
+	}
+}
+.fadeInRight {
+         -webkit-animation-name: fadeInRight;
+         animation-name: fadeInRight;
+}
+
+@-webkit-keyframes fadeIn {
+	0% {
+        opacity: 0;
+    }
+	100% {
+        opacity: 1;
+	}
+}
+@keyframes fadeIn {
+	0% {
+        opacity: 0;
+    }
+	100% {
+        opacity: 1;
+	}
+}
+.fadeIn {
+         -webkit-animation-name: fadeIn;
+         animation-name: fadeIn;
+}
+
+ 
+@media screen and (max-width: 500px) { 
+	.half-container {
+		width:100%;
+		margin: 15% 0%;
+	}
+	#main-container h3 {
+		margin: 23% 0% 15% 0%;
+	}
+	#main-container h4 {
+		margin: 15% 0% 15% 0%;
+	}
+	.container-select-type-of-login {
+		display: block;
+		text-align: center;
+		padding: 5%;
+	}
+	.address {
+		margin: 0% 0% 23% 0%;
+	}
+	.container-student-login, .container-faculty-login {
+		width: 100%;
+		margin: 15% 0% 23% 0%;
+	}
+	.login-form-input {
+		padding: 7%;
+    	margin: 8% 0% 3% 5%;
+    	border: none;
+		color: #272E41;
+		background-color: #F6FFFF;
+	}
+	.blue-button {
+	background-color: #008CBA;
+	color: #ffffff;
+	border: none;
+	padding: 5%;
+	}
+	.margin-top {
+		margin-top:5%;
+	}
+}

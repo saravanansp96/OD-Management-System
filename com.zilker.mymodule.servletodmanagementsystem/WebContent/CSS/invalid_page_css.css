@@ -1,0 +1,24 @@
+@charset "ISO-8859-1";
+h1 {
+  font-family: fantasy;
+  font-weight: lighter;
+  color: white;
+  margin-bottom: 2%;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+	padding: 1%;
+	background-color: #008CBA;
+	border-radius: 10%;
+}
+a:hover {
+	cursor: pointer;
+}
+body {
+	background-color: #f44336;
+}
+div {
+	text-align: center;
+}
