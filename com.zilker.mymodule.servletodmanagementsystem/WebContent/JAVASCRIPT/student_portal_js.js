@@ -17,18 +17,25 @@ var studentDetails;
 var odDetails;
 var tableContent;
 
-window.onclick = function(event) {
-    if (event.target == modal) {
-    	//modal.style.display = "none";
-    	modal.classList.remove('display-block');
-    	modal.classList.add('display-none');
-    }
-}
-
+//MODAL CLOSE
 function closeModal() {
 	modal.classList.remove('display-block');
 	modal.classList.add('display-none');
 	//modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+    	//modal.style.display = "none";
+    	//modal.classList.remove('display-block');
+    	//modal.classList.add('display-none');
+    	closeModal();
+    }
+}
+
+//NAVBAR FUNCTIONALITY
+function openNavBar() {
+    document.getElementById("nav-bar-list").classList.toggle("responsive");
 }
 
 function onNavBarClick (event) {
@@ -90,6 +97,8 @@ function onNavBarClick (event) {
 	}	
 }
 
+//ADDING RESPONSE FROM SERVLET TO THE JSP
+
 function addStudentDetailsToHtml (studentDetails) {
 	 tableContent = "<table class=\"student-details-table\"><tr><th>REGISTRATION NUMBER: </th><td>"+studentDetails.RegisterNumber+"</td></tr><tr><th>NAME: </th><td>"+studentDetails.Name+"</td></tr><tr><th>YEAR: </th><td>"+studentDetails.Year+"</td></tr><tr><th>DEPARTMENT: </th><td>"+studentDetails.Department+"</td></tr><tr><th>CGPA: </th><td>"+studentDetails.CGPA+"</td></tr><tr><th>ODS TAKEN: </th><td>"+studentDetails.OdTaken+"</td></tr><tr><th>ATTENDANCE: </th><td>"+studentDetails.Attendance+"</td></tr></table>";
 	 document.getElementById('details-of-student').innerHTML = tableContent;
@@ -119,93 +128,8 @@ function addOdDetailsToHtml (odDetails) {
 	document.getElementById('od-details-of-student').innerHTML = tableContent;
 }
 
-function getOdDetails(registerNumber) {
-	var xhttp =new XMLHttpRequest();
-	var url = "ViewOdFactory?type=StudentViewOd&registerNumber="+registerNumber;
-	console.log(url);
-    xhttp .onreadystatechange=function() {
-        if(this.readyState == 4 && this.status == 200) {
-        	console.log(this.responseText);
-        	odDetails = JSON.parse(this.responseText);
-        	addOdDetailsToHtml(odDetails);
-        }
-    };
-    xhttp.open("POST", url , true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
-}
-
-function ifDateInRange(eventDate) {
-	var today = new Date();
-	var todayInMilliSeconds = today.getTime();
-	eventDate = new Date(eventDate);
-	var eventDateInMilliSeconds = eventDate.getTime();
-	var differenceInDays = (eventDateInMilliSeconds - todayInMilliSeconds)/(1000*60*60*24);
-	console.log(differenceInDays);
-	if(differenceInDays > 31) {
-		return 0;
-	}
-	return 1;
-}
-
-function isSundayCheck(eventDate) {
-	eventDate = new Date(eventDate);
-	var dayOfWeek =  eventDate.getDay();
-	if(dayOfWeek == 0) {
-		return 1;
-	}
-	return 0;
-}
-
-function applyTheOd (registerNumber) {
-	var eventName = document.getElementById('input-event-name').value;
-	var eventDate = document.getElementById('inpt-event-date').value;
-	if (ifDateInRange(eventDate) == 1 && isSundayCheck(eventDate) == 0){
-	var xhttp =new XMLHttpRequest();
-	var url = "StudentPortalServlet?id=applyOd&registerNumber="+registerNumber+"&eventName="+eventName+"&eventDate="+eventDate;
-    xhttp .onreadystatechange=function() {
-        if(this.readyState == 4 && this.status == 200) {
-        	//alert(this.responseText);
-        	//modal.style.display = "block";
-        	document.getElementById('modal-contents').innerHTML = this.responseText;
-        	modal.classList.remove('display-none');
-        	modal.classList.add('display-block');
-        	document.getElementById('input-event-name').value = "";
-        	document.getElementById('inpt-event-date').value = "";
-        }
-    };
-        xhttp.open("POST", url , true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send();
-	} else {
-		//alert("You can't apply OD for that date "+eventDate);
-		document.getElementById('modal-contents').innerHTML = "You can't apply OD for that date "+eventDate; 
-    	modal.classList.remove('display-none');
-    	modal.classList.add('display-block');
-	}
-}
-
-function getStudentDetails(registerNumber) {
-	var xhttp =new XMLHttpRequest();
-	var url = "StudentPortalServlet?id=viewDetails&registerNumber="+registerNumber;
-	console.log(url);
-    xhttp .onreadystatechange=function() {
-        if(this.readyState == 4 && this.status == 200) {
-        	console.log(this.responseText);
-        	studentDetails = JSON.parse(this.responseText);
-        	console.log(studentDetails.RegisterNumber);
-        	addStudentDetailsToHtml(studentDetails);
-        }
-    };
-        xhttp.open("POST", url , true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send();
-}
-
-function openNavBar() {
-    document.getElementById("nav-bar-list").classList.toggle("responsive");
-}
-
+//SORT FUNCTIONALITY
+//TODO make it a single function
 function sortByStatus() {
 	console.log("inside the sortByStatus "+flagStatusOfOd);
 	odDetails.sort(function(a, b){
@@ -247,6 +171,91 @@ function sortByDate() {
 	}else {
 		addOdDetailsToHtml(odDetails);
 		flagDateOfEvent = 1;
+	}
+}
+
+//DATE CHECK
+function ifDateInRange(eventDate) {
+	var today = new Date();
+	var todayInMilliSeconds = today.getTime();
+	eventDate = new Date(eventDate);
+	var eventDateInMilliSeconds = eventDate.getTime();
+	var differenceInDays = (eventDateInMilliSeconds - todayInMilliSeconds)/(1000*60*60*24);
+	console.log(differenceInDays);
+	if(differenceInDays > 31) {
+		return 0;
+	}
+	return 1;
+}
+
+function isSundayCheck(eventDate) {
+	eventDate = new Date(eventDate);
+	var dayOfWeek =  eventDate.getDay();
+	if(dayOfWeek == 0) {
+		return 1;
+	}
+	return 0;
+}
+
+//AJAX CALLS
+function getOdDetails(registerNumber) {
+	var xhttp =new XMLHttpRequest();
+	var url = "ViewOdFactory?type=StudentViewOd&registerNumber="+registerNumber;
+	console.log(url);
+    xhttp .onreadystatechange=function() {
+        if(this.readyState == 4 && this.status == 200) {
+        	console.log(this.responseText);
+        	odDetails = JSON.parse(this.responseText);
+        	addOdDetailsToHtml(odDetails);
+        }
+    };
+    xhttp.open("POST", url , true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+}
+
+function getStudentDetails(registerNumber) {
+	var xhttp =new XMLHttpRequest();
+	var url = "ViewStudentDetailsServlet?registerNumber="+registerNumber;
+	console.log(url);
+    xhttp .onreadystatechange=function() {
+        if(this.readyState == 4 && this.status == 200) {
+        	console.log(this.responseText);
+        	studentDetails = JSON.parse(this.responseText);
+        	console.log(studentDetails.RegisterNumber);
+        	addStudentDetailsToHtml(studentDetails);
+        }
+    };
+        xhttp.open("POST", url , true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send();
+}
+
+function applyTheOd (registerNumber) {
+	var eventName = document.getElementById('input-event-name').value;
+	var eventDate = document.getElementById('inpt-event-date').value;
+	if (ifDateInRange(eventDate) == 1 && isSundayCheck(eventDate) == 0){
+	var xhttp =new XMLHttpRequest();
+	var url = "ApplyOdServlet?registerNumber="+registerNumber+"&eventName="+eventName+"&eventDate="+eventDate;
+    xhttp .onreadystatechange=function() {
+        if(this.readyState == 4 && this.status == 200) {
+        	//alert(this.responseText);
+        	//modal.style.display = "block";
+        	document.getElementById('modal-contents').innerHTML = this.responseText;
+        	modal.classList.remove('display-none');
+        	modal.classList.add('display-block');
+        	document.getElementById('input-event-name').value = "";
+        	document.getElementById('inpt-event-date').value = "";
+        }
+    };
+        xhttp.open("POST", url , true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send();
+	} else {
+		//alert("You can't apply OD for that date "+eventDate);
+		document.getElementById('modal-contents').innerHTML = "You can't apply OD for that date "+eventDate; 
+    	modal.classList.remove('display-none');
+    	modal.classList.add('display-block');
 	}
 }
 

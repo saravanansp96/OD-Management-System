@@ -29,9 +29,9 @@
 <li id = "apply-Od-Nav" class = "nav-bar-element"><div>Apply OD</div></li>
 <li id = "view-Od-Details-Nav" class = "nav-bar-element"><div onclick = "getOdDetails('<%= registerNumber %>')" >Status of OD</div></li>
 <li class = "nav-bar-element dropdown"><div>Hi <%= name %></div>
-<form method = "post" action = "StudentPortalServlet?id=logout" class = "logoutbutton"><input class = "blue-button-logout" type = "submit" value ="Log out" ></form>
+<form method = "post" action = "StudentLogoutServlet" class = "logoutbutton"><input class = "blue-button-logout" type = "submit" value ="Log out" ></form>
 </li>
-<li class = "nav-bar-element mob-display"><form method = "post" action = "StudentPortalServlet?id=logout"><input class = "blue-button-logout" type = "submit" value ="Log out" ></form></li>
+<li class = "nav-bar-element mob-display"><form method = "post" action = "StudentLogoutServlet"><input class = "blue-button-logout" type = "submit" value ="Log out" ></form></li>
 </ul>
 </div>
 <div class = "container">

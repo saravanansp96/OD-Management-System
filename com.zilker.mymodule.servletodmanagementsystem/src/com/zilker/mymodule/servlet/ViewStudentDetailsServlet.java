@@ -7,31 +7,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.zilker.mymodule.servletdelegate.ViewOdDelegate;
+import com.zilker.mymodule.servletdelegate.StudentPortalDelegate;
 
 /**
- * Servlet implementation class ViewOdFactory
+ * Servlet implementation class ViewStudentDetailsServlet
  */
-@WebServlet("/ViewOdFactory")
-public class ViewOdFactory extends HttpServlet {
+@WebServlet("/ViewStudentDetailsServlet")
+public class ViewStudentDetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewOdFactory() {
+    public ViewStudentDetailsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		ViewOdDelegate viewOdDelegate = new ViewOdDelegate();
-		viewOdDelegate.viewOd(request,response);
+		StudentPortalDelegate studentPortalDelegate = new StudentPortalDelegate();
+		response.getWriter().write(studentPortalDelegate.getStudentDetails(request, response));
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

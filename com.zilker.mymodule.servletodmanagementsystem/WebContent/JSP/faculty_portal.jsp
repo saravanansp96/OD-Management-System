@@ -19,9 +19,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="./CSS/faculty_portal.css">
@@ -35,7 +33,7 @@
 				<%=name%></div>
 		</li>
 		<li class="nav-bar-element animation fadeInDown"><div
-				onclick="oDApprovedStudents(<%=facultyId%>)">OD Approved Students</div>
+				onclick="totalOdList(<%=facultyId%>)">OD LIST</div>
 		</li>
 		<li class="nav-bar-element animation fadeInDown"><div
 				onclick="odPendingStudents(<%=facultyId%>)">Approve OD</div></li>
@@ -82,7 +80,10 @@
 				name to see the student details</p>
 		</div>
 		<div id="container-od-approved" class="display-none animation fadeIn">
-			<h3 class="content-center">OD APPROVED STUDENTS</h3>
+			<h3 class="content-center">OD LIST</h3>
+			<div class = "content-center" id = "filter-od-details"><span><input name = "filter" class = "filter-check-box" type = "checkbox" value = "pending" checked>Pending</span>
+	<span><input name = "filter" class = "filter-check-box" type = "checkbox" value = "rejected" checked>Rejected</span>
+	<span><input name = "filter" class = "filter-check-box" type = "checkbox" value = "approved" checked>Approved</span></div> 
 			<div id="od-approved-list"></div>
 		</div>
 	</div>

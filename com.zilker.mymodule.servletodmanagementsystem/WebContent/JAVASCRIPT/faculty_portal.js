@@ -10,19 +10,22 @@ var odApprovalContentsSection = document.getElementById('approval-od-list');
 var welcomeTab = document.getElementById('welcome-container');
 var modal = document.getElementById('myModal');
 var cancelModal = document.getElementById('close-modal');
+var filterOdList = document.getElementById('filter-od-details');
+var displayFilter= new Array();
 var flagDateOfEvent = 0;
 var studentDetails;
 
-function oDApprovedStudents (facultyId) {
+
+function totalOdList (facultyId) {
+	facultyCopyId = facultyId;
 	var xhttp =new XMLHttpRequest();
 	var url = "ViewOdFactory?type=FacultyViewOd&faculty-id="+facultyId;
 	console.log(url);
     xhttp .onreadystatechange=function() {
         if(this.readyState == 4 && this.status == 200) {
-        	console.log(this.responseText);
+        	//console.log(this.responseText);
         	studentDetails = JSON.parse(this.responseText);
-        	console.log(studentDetails[0].RegisterNumber);
-        	addStudentDetailsToHtml(studentDetails);
+        	addStudentDetailsToHtml();
         }
     };
         xhttp.open("POST", url , true);
@@ -31,6 +34,7 @@ function oDApprovedStudents (facultyId) {
 }
 
 function odPendingStudents (facultyId) {
+	facultyCopyId = facultyId;
 	var xhttp =new XMLHttpRequest();
 	facultyCopyId = facultyId;
 	var url = "FacultyPotalServlet?id=odPendingStudents&faculty-id="+facultyId;
@@ -80,7 +84,7 @@ function getStudentDetails(registerNumber) {
 
 function navFunction(event) {
 	var target = event.target;
-	if(target.innerHTML == 'OD Approved Students')
+	if(target.innerHTML == 'OD LIST')
 		{
 			console.log("inside OD approved");
 			if (approvedStudentSection.classList.contains('display-none')){
@@ -171,11 +175,48 @@ window.onclick = function(event) {
     }
 }
 
-function addStudentDetailsToHtml(studentDetails) {
-	
-	var tableContents = "<table class=\"student-details-table\"><tr class = \"student-details-tr\"><th>Register Number</th><th>Student Name</th><th>Event Description</th><th class = \"hover-pointer\" onclick = \"sortByDate()\">Event Date  <i class=\"fa fa-sort\" aria-hidden=\"true\"></i></th></tr>";
+function isChecked(type){
+	var inputElements = document.getElementsByClassName('filter-check-box');
+	for(var i=0; inputElements[i]; ++i){ 
+		if(inputElements[i].checked && inputElements[i].value == type){
+			return 1;
+		}
+	}
+	return 0;
+}
+
+function changeOdList() {
+	totalOdList(facultyCopyId);
+	console.log("inside Event Listener");
+	var inputElements = document.getElementsByClassName('filter-check-box');
+	for(var i=0; studentDetails.length; ++i){
+		if(studentDetails[i] == null){
+			console.log("hello");
+		}
+	      if(isChecked(studentDetails[i].status)==1){
+	    	 displayFilter[i]='display-table-row';
+	      }
+	      else {
+	    	 displayFilter[i]='display-none';
+	      }
+	}
+	addStudentDetailsToHtml();
+}
+
+//view od list
+function addStudentDetailsToHtml() {
+	var tableContents = "<table class=\"student-details-table\"><tr class = \"student-details-tr display-table-row\"><th>Register Number</th><th>Student Name</th><th>Event Description</th><th>Event Date</th><th>Status</th></tr>";
 	for(var i =0 ; i < studentDetails.length ; i++ ) {
-		tableContents = tableContents + "<tr class = \"student-details-tr\"><td>"+studentDetails[i].registerNumber+"</td><td>"+studentDetails[i].student_name+"</td><td>"+studentDetails[i].eventName+"</td><td>"+studentDetails[i].dateOfEvent+"</td></tr>";
+		if(studentDetails[i].status == "pending"){
+			className = "pending-color";
+		}
+		else if (studentDetails[i].status == "approved") {
+			className = "approved-color";
+		}
+		else {
+			className = "rejected-color";
+		}
+		tableContents = tableContents + "<tr class = \"student-details-tr "+displayFilter[i]+"\"><td>"+studentDetails[i].registerNumber+"</td><td>"+studentDetails[i].student_name+"</td><td>"+studentDetails[i].eventName+"</td><td>"+studentDetails[i].dateOfEvent+"</td><td class = "+className+">"+studentDetails[i].status+"</td></tr>";
 	}
 	tableContents = tableContents + "</table>";
 	document.getElementById('od-approved-list').innerHTML = tableContents;
@@ -275,3 +316,4 @@ function openNavBar() {
 navBar.addEventListener('click',navFunction);
 odApprovalContentsSection.addEventListener('click',odApproveOrReject);
 cancelModal.addEventListener('click',closeModal);
+filterOdList.addEventListener('click',changeOdList);

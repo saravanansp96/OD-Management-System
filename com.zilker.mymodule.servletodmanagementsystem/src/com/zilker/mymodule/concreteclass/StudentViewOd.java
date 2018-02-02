@@ -12,11 +12,6 @@ import com.zilker.mymodule.servletdelegate.StudentPortalDelegate;
 public class StudentViewOd implements ViewOdInterface {
 	public void viewOdDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		StudentPortalDelegate studentPortalDelegate = new StudentPortalDelegate();
-		String number = (String)request.getParameter("registerNumber");
-		long registerNumber = Long.parseLong(number);
-		String jsonArray = studentPortalDelegate.getOdDetails(registerNumber);
-		response.setContentType("application/json");
-	    response.setCharacterEncoding("UTF-8");
-	    response.getWriter().write(jsonArray);
+		studentPortalDelegate.getOdDetails(request,response);
 	}
 }

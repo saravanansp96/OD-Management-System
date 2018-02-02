@@ -1,10 +1,14 @@
 package com.zilker.mymodule.dbconnection;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Logger;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import com.zilker.mymodule.constants.Constants;
 
 public class ConnectionClass {
@@ -15,9 +19,9 @@ public class ConnectionClass {
 	public Connection getConnection() {
 		constants = new Constants();
 		try {
-			Class.forName(constants.JDBC_DRIVER);
-			connection = DriverManager.getConnection(constants.DB_NAME, constants.USERNAME,
-					constants.PASSWORD);
+			Context context  = new InitialContext();
+			DataSource ds  = (DataSource)context.lookup("java:comp/env/jdbc/Attendance_management_system");
+			connection = ds.getConnection();
 		} catch (Exception e) {
 			logger.info(constants.EXCEPTION_UNABLE_TO_CREATE_CONNECTION);
 		}

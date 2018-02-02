@@ -65,6 +65,9 @@ body {
 .display-block {
 	display: block;
 }
+.display-table-row {
+	display:table-row;
+}
 .container {
 	margin: 5%;
 	padding: 3%;
@@ -190,6 +193,24 @@ body {
 }
 .hover-pointer:hover {
 	cursor:pointer;
+}
+.approved-color {
+	color: 	#006400;
+}
+.rejected-color {
+	color: #FF3333;
+}
+.pending-color {
+	color: #FF7E00;
+}
+.color-red {
+	color: #ff0000;	
+}
+.content-center span {
+	padding:3%;	
+}
+.filter-check-box {
+	margin: 5% 1%;
 }
 @media screen and (max-width: 500px) {
 	.container {

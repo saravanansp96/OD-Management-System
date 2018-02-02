@@ -17,7 +17,7 @@ public class FacultyPortalDelegate {
 	public String getTheOdAprrovedList (int facultyId) {
 		ArrayList<PendingOD> odApprovedStudents = new ArrayList<PendingOD>();
 		ApproveOD approveOD = new ApproveOD();
-		odApprovedStudents = approveOD.displayApprovedOd(facultyId);
+		odApprovedStudents = approveOD.displayOdList(facultyId);
 		JSONArray arrayOdApprovedList = new JSONArray(odApprovedStudents);	
 		return arrayOdApprovedList.toString();
 	}

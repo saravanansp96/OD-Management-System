@@ -58,6 +58,8 @@ public class Constants {
 	public final String QUERY_GET_FACULTY_ID_FROM_REGISTER_NUMBER = "select Faculty_ID from studentdetails where Register_Number = ?";
 
 	public final String QUERY_ALREADY_APPROVED = "select * from oddetails where Register_Number=? and Date_of_Event=? and Status_of_OD= 'approved'; ";
+	
+	public final String QUERY_GET_OD_LIST = "select a.Register_Number, a.Student_Name ,c.Event_Name , c.Date_of_Event ,c.Status_of_OD from oddetails c, StudentDetails a where a.Faculty_ID =? and a.Register_Number=c.Register_Number order by c.Date_of_Event;";
 
 	// Exception Constants
 	

@@ -1,6 +1,5 @@
 package com.zilker.mymodule.interfaces;
 
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;

@@ -113,14 +113,14 @@ public class ApproveOD {
 
 	}
 	
-	public ArrayList<PendingOD> displayApprovedOd (int facultyId)
+	public ArrayList<PendingOD> displayOdList (int facultyId)
 	{
 		constants = new Constants();
 		ArrayList<PendingOD> approvedOD = new ArrayList<PendingOD>();
 		ConnectionClass gcc = new ConnectionClass();
 		try {
 			connection = gcc.getConnection();
-			statement=connection.prepareStatement(constants.QUERY_LIST_OF_APPROVED_OD);
+			statement=connection.prepareStatement(constants.QUERY_GET_OD_LIST);
 			statement.setInt(1, facultyId);
 			resultSet=statement.executeQuery();
 			while(resultSet.next())
